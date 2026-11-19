@@ -1,4 +1,4 @@
-// shots.js — fixed scenes for the screenshots.
+// shots.js — fixed scenes for the screenshots (v3).
 //
 // Reads the page's query string and sets the studio up for one shot:
 //   ?shot=cover&size=wide|square|story&layout=..&grade=..&photo=..&title=..&subtitle=..
@@ -6,6 +6,7 @@
 //       window, so the screenshot IS the exported cover at that size.
 //   ?shot=editor&layout=..&grade=..&photo=..
 //       shows the editor with a photo loaded.
+//   Optional flags: &grain=0|1 &vignette=0|1 &ribbon=0|1.
 // Without a ?shot param the editor opens with its defaults.
 
 import { GRADE_ORDER, LAYOUT_ORDER } from './cover.js';
@@ -20,6 +21,12 @@ function readShotParams() {
     return v && list.includes(v) ? v : fallback;
   };
   const photo = q.get('photo');
+  const flag = (key, fallback) => {
+    const v = q.get(key);
+    if (v === '0' || v === 'false') return false;
+    if (v === '1' || v === 'true') return true;
+    return fallback;
+  };
   const params = {
     shot,
     size: q.get('size') || 'wide',
@@ -29,6 +36,9 @@ function readShotParams() {
     title: q.get('title') || null,
     subtitle: q.get('subtitle') || null,
     eyebrow: q.get('eyebrow') || null,
+    grain: flag('grain', studio.state.grain),
+    vignette: flag('vignette', studio.state.vignette),
+    ribbon: flag('ribbon', studio.state.ribbon),
   };
   return params;
 }
@@ -43,10 +53,32 @@ async function applyShotScene() {
   if (params.title) state.title = params.title;
   if (params.subtitle) state.subtitle = params.subtitle;
   if (params.eyebrow) state.eyebrow = params.eyebrow;
+  state.grain = params.grain;
+  state.vignette = params.vignette;
+  state.ribbon = params.ribbon;
   if (params.photo) {
     state.panels = state.panels.map((panel) => ({ ...panel, photo: params.photo }));
   }
   state.selectedPanel = 0;
+  // Sync the editor inputs and pickers with the shot's state, after the
+  // editor has built them (init runs on DOMContentLoaded).
+  setTimeout(() => {
+    const titleInput = document.getElementById('titleInput');
+    if (titleInput) titleInput.value = state.title;
+    const subtitleInput = document.getElementById('subtitleInput');
+    if (subtitleInput) subtitleInput.value = state.subtitle;
+    const eyebrowInput = document.getElementById('eyebrowInput');
+    if (eyebrowInput) eyebrowInput.value = state.eyebrow;
+    document.querySelectorAll('[data-layout]').forEach((b) => {
+      b.classList.toggle('active', b.dataset.layout === state.layout);
+    });
+    document.querySelectorAll('[data-grade]').forEach((b) => {
+      b.classList.toggle('active', b.dataset.grade === state.grade);
+    });
+    document.querySelectorAll('[data-preview]').forEach((b) => {
+      b.classList.toggle('active', b.dataset.preview === state.previewSize);
+    });
+  }, 60);
   if (params.shot === 'cover') {
     document.body.classList.add('cover-shot');
     const canvas = document.getElementById('coverCanvas');
