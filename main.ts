@@ -1,5 +1,9 @@
 // Neon Coast Cover Studio — the entry program (Node 22, standard library only).
 //
+// v3: the cover lettering is drawn by the procedural bitmap font in
+// app/src/cover.js — the app ships no font files at all, so every
+// counted file is written by the recorded build session.
+//
 // The app is plain static files under app/ beside this file. This program
 // hands it in: it copies app/ and screenshots/ into the output directory
 // and writes /output/dossier.json, the summary the judge reads, using the
