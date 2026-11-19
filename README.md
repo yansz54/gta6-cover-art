@@ -7,13 +7,13 @@
 
 ## What it does
 
-- **Six cover layouts** — Vice Grid (nine-panel grid with a title block), Hero & Three, Full Bleed, Tilted Snapshots, Split Duo and Film Strip.
-- **Five gradient-map grades** — Sunset, Neon Nights, Vice, Noir and Palm Gold: each photo's light is remapped through a Vice City neon-sunset palette.
-- **Real cover lettering** — an Anton title in a halftone title block with a Pacifico script subtitle, plus a launch-week ribbon.
+- **Six cover layouts** — Hero Strip (hero panel over a sunset title band and a three-panel strip), Vice Grid (a 3×3 grid with the title block at its centre), Full Bleed, Split Duo, Film Strip and Tilted Trio.
+- **Six gradient-map grades** — Sunset, Neon Nights, Vice, Noir and Palm Gold, plus the signature grade **Vice Ink**: deep blacks, a posterised sunset gradient, halftone dots in the shadows and a neon accent.
+- **Real poster lettering** — a large Anton title with a halftone-dot treatment and a warm-to-neon gradient fill, a Pacifico script subtitle, a Bebas Neue eyebrow and a Launch Week ribbon, over a sunset sky with a slatted sun and palm silhouettes.
 - **Any photo, per panel** — add your own photos, or use the two built-in samples. Click a panel to select it, drag to move the photo, scroll to zoom, double-click to swap it. Sliders for zoom and position too.
 - **One-click export** — PNG in 1080 × 1080, 1080 × 1350 (story) and 1920 × 1080 (wide), one size at a time or all three at once.
-- **Undo / redo** — every change is on the history stack.
-- **Film grain & vignette** — the finishing touch, toggleable.
+- **Undo / redo** — every change is on a 50-step history stack.
+- **Film grain & vignette** — the print finish, toggleable.
 
 ## Run it
 
