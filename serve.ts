@@ -4,7 +4,8 @@
 //   node serve.ts --port N   serves it on port N instead
 // It answers only files inside app/, sends the MIME types an offline web
 // app needs, and does nothing clever. A development convenience, not a
-// server for the internet.
+// server for the internet. v3: the app ships no font files, so no font
+// MIME types are listed.
 
 import { createReadStream, statSync } from 'node:fs';
 import { createServer } from 'node:http';
@@ -30,10 +31,6 @@ const MIME_TYPES = {
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
   '.ico': 'image/x-icon',
-  '.woff2': 'font/woff2',
-  '.woff': 'font/woff',
-  '.ttf': 'font/ttf',
-  '.otf': 'font/otf',
   '.txt': 'text/plain; charset=utf-8',
 };
 

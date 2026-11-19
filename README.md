@@ -7,12 +7,12 @@
 
 ## What it does
 
-- **Six cover layouts** — Hero Strip (hero panel over a sunset title band and a three-panel strip), Vice Grid (a 3×3 grid with the title block at its centre), Full Bleed, Split Duo, Film Strip and Tilted Trio.
-- **Six gradient-map grades** — Sunset, Neon Nights, Vice, Noir and Palm Gold, plus the signature grade **Vice Ink**: deep blacks, a posterised sunset gradient, halftone dots in the shadows and a neon accent.
-- **Real poster lettering** — a large Anton title with a halftone-dot treatment and a warm-to-neon gradient fill, a Pacifico script subtitle, a Bebas Neue eyebrow and a Launch Week ribbon, over a sunset sky with a slatted sun and palm silhouettes.
-- **Any photo, per panel** — add your own photos, or use the two built-in samples. Click a panel to select it, drag to move the photo, scroll to zoom, double-click to swap it. Sliders for zoom and position too.
-- **One-click export** — PNG in 1080 × 1080, 1080 × 1350 (story) and 1920 × 1080 (wide), one size at a time or all three at once.
-- **Undo / redo** — every change is on a 50-step history stack.
+- **Six cover layouts** — Hero Strip (a hero panel over a three-panel strip), Vice Grid (a 2×2 grid), Full Bleed, Split Duo, Film Strip (five narrow frames) and Tilted Trio (three panels at a slight tilt).
+- **Six colour grades** — Sunset, Neon Nights, Vice, Noir and Palm Gold, plus the signature grade **Vice Ink**: deep blacks, a posterised sunset gradient, heavy halftone dots in the shadows and a neon accent.
+- **Procedural poster lettering** — every letter on a cover is drawn by the studio's own hand-authored 5×7 pixel alphabet in `app/src/cover.js`: a large gradient title with a dark outline and drop shadow over a halftone-dot backing, a wide-tracked eyebrow, a slanted subtitle and a Launch Week ribbon. No font files, no downloads, no Rockstar material.
+- **Any photo, per panel** — add your own photos, or use the two built-in samples. Drag a panel to pan its photo, scroll over it to zoom, double-click two panels to swap them.
+- **One-click export** — PNG in 1080 × 1080, 1080 × 1350 (story) and 1920 × 1080 (wide).
+- **Shuffle, undo / redo** — a Shuffle button for a fresh random cover, and every change on a 50-step history stack.
 - **Film grain & vignette** — the print finish, toggleable.
 
 ## Run it
@@ -24,11 +24,11 @@ node serve.ts
 # open http://localhost:8080
 ```
 
-Or open `app/index.html` straight from disk — everything (fonts, samples, scripts) is vendored, so it works offline.
+Or open `app/index.html` straight from disk — everything (samples, scripts) is vendored, so it works offline.
 
 ## How it works
 
-`app/src/cover.js` is the cover engine: it draws the sunset sky, grades each photo through a 256-entry gradient-map lookup table, lays the panels out, inks the halftone title block and adds grain and vignette — all on canvas 2D. `app/src/main.js` is the editor (state, history, gestures, export). `app/src/shots.js` renders fixed scenes for the screenshots. Fonts are Anton, Pacifico and Bebas Neue under the SIL Open Font License (texts beside them in `app/fonts/`). The two sample photos were made with an image model for make.fun and show no real person.
+`app/src/cover.js` is the cover engine: it draws the sunset sky with a slatted synthwave sun, a skyline with lit windows and palm silhouettes, grades each photo through the grade palette, lays the panels out, inks the halftone title block with the procedural bitmap font and adds grain and vignette — all on canvas 2D. `app/src/main.js` is the editor (state, history, gestures, export). `app/src/shots.js` renders fixed scenes for the screenshots. The two sample photos were made with an image model for make.fun and show no real person.
 
 ## Entry
 
